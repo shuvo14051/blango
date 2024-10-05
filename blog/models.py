@@ -20,7 +20,7 @@ class Post(models.Model):
     title = models.TextField(max_length=100)
     slug = models.SlugField()
     summary = models.TextField(max_length=500)
-    context = models.TextField()
+    content = models.TextField()
     tags = models.ManyToManyField(Tag, related_name = 'posts')
     comments = GenericRelation("Comment")
 
