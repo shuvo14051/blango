@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+
+{% block content %}
+  <div class="container">
+    <h2>{{ post.title }}</h2>
+
+    <!-- Post Byline -->
+    <div class="row">
+      <div class="col">
+        {% include 'blog/post-byline.html' %}
+      </div>
+    </div>
+
+    <!-- Post Content -->
+    <div class="row">
+      <div class="col">{{ post.content|safe }}</div>
+    </div>
+
+    <!-- Post Comments -->
+    <div class="row">
+      <div class="col">
+        {% include 'blog/post-comments.html' %}
+      </div>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="row">
+      <div class="col">
+        {% recent_posts post %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

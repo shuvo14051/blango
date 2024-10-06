@@ -1,0 +1,32 @@
+{% load blog_extras crispy_forms_tags %}
+
+<h4 class="mt-4">Comments</h4>
+{% if post.comments.exists %}
+  {% for comment in post.comments.all %}
+    <div class="row">
+      <div class="col">
+        <h5>Posted by {{ comment.creator }} at {{ comment.created_at|date:'M, d Y h:i' }}</h5>
+        <p>{{ comment.content }}</p>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No comments.</p>
+{% endif %}
+
+<!-- Display the comment box here -->
+<div class="conainer">
+  {% row 'mt-4' %}
+  <div class="col">
+    <h4>Add Comment</h4>
+    {% comment %} <form method="post">
+      {% csrf_token %}
+      {{ comment_form|crispy }}
+      <p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </p>
+    </form> {% endcomment %}
+    {% crispy comment_form %}
+  </div>
+  {% endrow %}
+</div>
